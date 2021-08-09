@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {Table, Button, Input, Col, Row } from 'reactstrap';
 import { FaDatabase, FaSync, FaPlus } from "react-icons/fa";
 import {Field, Formik} from 'formik'
-import PropTypes, {func} from 'prop-types';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as Yup from 'yup';
 import ConfirmModal from "../../../../components/ConfirmModal/ConfirmModal";
-import roleApi from "../../../../api/roleApi";
 
 const UsernameValidation = Yup.string()
         .min(2, 'Username too Short!')
@@ -110,7 +109,7 @@ const TableComponent = (props) => {
             </thead>
             <tbody>
             {users.map(user => {
-            if(user)
+            if(user){
                 return (
                     <>
                         <Formik initialValues={user} enableReinitialize={true} >{
@@ -162,6 +161,7 @@ const TableComponent = (props) => {
                         }
                         </Formik>
                     </>)
+            } else return null;
             })
             }
             </tbody>

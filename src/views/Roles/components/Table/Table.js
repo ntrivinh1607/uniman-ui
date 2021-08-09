@@ -94,7 +94,7 @@ const TableComponent = (props) => {
                     </Button>
                 </Col>
             </Row>
-            <Table responsive bordered style={{minHeight: "650px"}}>
+            <Table responsive bordered style={{minHeight: "150px"}}>
             <thead>
             <tr>
                 <th>#</th>
@@ -103,7 +103,7 @@ const TableComponent = (props) => {
                 <th>Actions</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody >
             {roles.map(role => {
             if(role)
                 return (
@@ -127,7 +127,7 @@ const TableComponent = (props) => {
                                                     }
                                                 />
                                             </td>
-                                            <td>
+                                            <td style={{height: "30px"}}>
                                                 {values.isEditing &&
                                                 <MultiSelectComponent selectedValues={values.permissions} setFieldValue={setFieldValue}/>}
                                                 {!values.isEditing &&

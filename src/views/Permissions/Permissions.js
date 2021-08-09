@@ -29,7 +29,7 @@ export default function Permissions(props) {
             }
             await fetchData();
         } catch(err){
-            console.log(err)
+            alert(`Save error! ${err}`)
             return null;
         }
     }
@@ -51,7 +51,7 @@ export default function Permissions(props) {
                 }))
             }
         } catch(err){
-            console.log(err)
+            alert(`Delete error! ${err}`)
             return null;
         }
     }
