@@ -1,0 +1,38 @@
+.jumbotron {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+.cardD {
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius:5px;
+    box-shadow: 3px 3px 10px #263238;
+}
+.buttonOrange {
+    width: 100%;
+    background: #F77F00;
+    border-style: none;
+}
+.titleHead {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+.register_btn, .register_btn:hover{
+    text-decoration: none;
+}
+.btn_{
+    margin: 5px 0;
+}
+.form_signin_footer{
+    display: flex;
+    justify-content: space-around;
+}
+.my-custom-input {
+    width: 100%
+}
