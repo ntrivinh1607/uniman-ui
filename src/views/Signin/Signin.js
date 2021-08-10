@@ -65,10 +65,8 @@ export default function Signin(props) {
             if (err.response) {
                 if (err.response.status === 403 || err.response.status === 401) {
                     AuthenticationService.signout();
-                } else if (err.response.status === 400) {
-                    setStatus("SIGN IN FAIL");
                 } else {
-                    setStatus("RESPONSE 500");
+                    setStatus("Wrong user name or password");
                 }
             }
             setIsLoading(false);
