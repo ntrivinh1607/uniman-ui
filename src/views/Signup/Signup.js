@@ -43,7 +43,7 @@ export default function Signup(props) {
             const data = await roleApi.getAll();
             setRoles(data?.map(item=> ({id: item.id, name: item.name})));
         }catch(e){
-            console.log(e);
+            alert(e);
         }
     }
 

@@ -3,7 +3,7 @@ import {Multiselect} from "multiselect-react-dropdown";
 import permissionApi from "../../../../api/permissionApi";
 
 const MultiSelectComponent = ({ selectedValues = [], setFieldValue=()=>{}}) => {
-    const [ permissions, setPermissions ] = useState([{id: 0, name: "FRESHER"}]);
+    const [ permissions, setPermissions ] = useState([{id: 0, name: "READ"}]);
 
     const fetchData = async()=>{
         const data = await permissionApi.getAll()
