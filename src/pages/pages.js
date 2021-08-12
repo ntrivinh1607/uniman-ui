@@ -17,9 +17,9 @@ export default function Pages() {
 
     const signout = () => {
         AuthenticationService.signout();
-        if(history)
-            history.push("/signin");
-        else window.location.href=RoutesString.SIGNIN;
+
+        window.location.href=RoutesString.SIGNIN;
+
         return null;
     };
 

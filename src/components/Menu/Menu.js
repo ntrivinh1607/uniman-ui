@@ -87,7 +87,7 @@ export default function Menu(props) {
                 }
 
             </Nav>
-            <Nav className="ml-auto" navbar>
+            <Nav className="mx-5" navbar>
                 {!isLogined ? (
                     <NavItem>
                         <Button
@@ -96,7 +96,7 @@ export default function Menu(props) {
                             onClick={() =>
                             history.push(
                                 RoutesString.SIGNIN
-                            )} >
+                            )}
                         >
                             <FaSignInAlt /> &nbsp; Sign In
                         </Button>
