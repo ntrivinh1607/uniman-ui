@@ -23,8 +23,7 @@ export default function Users(props) {
             const data = await userApi.getAll();
             if(data) {
                 setUsers(data
-                    .filter(item=>item.id !== curUser.id)
-                    .map(item=> {
+                    .map(item => {
                     item.isEditing = false;
                     return item;
                 }));
@@ -60,18 +59,24 @@ export default function Users(props) {
         }
     }
     const onActionEdit = (rowId)=>{
-        const newUsers = JSON.parse(JSON.stringify(users));
-        setUsers(newUsers.map(user=>{
-            if(user.id === rowId) user.isEditing = true;
-            return user;
-        }));
+        if(rowId === curUser.id){
+            alert("Please edit your information in Profile page");
+        } else {
+            const newUsers = JSON.parse(JSON.stringify(users));
+            setUsers(newUsers.map(user=>{
+                if(user.id === rowId) user.isEditing = true;
+                return user;
+            }));
+        }
     }
     const onActionDelete = async (rowId)=>{
         try{
             if(rowId){
-                await userApi.deleteById(rowId);
-            } else {
-
+                if(rowId === curUser.id){
+                    alert("Cannot delete yourself!!!");
+                } else {
+                    await userApi.deleteById(rowId);
+                }
             }
             await fetchUsers();
         } catch(err){
