@@ -35,7 +35,7 @@ const TableComponent = (props) => {
             .then(() => {
                 onActionSave(row);
             }).catch(()=>{
-                alert("Permission's name must between 2 and 5 characters");
+                alert("Permission's name must between 4 and 20 characters");
         });
     }
 

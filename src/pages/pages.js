@@ -6,7 +6,8 @@ import AuthenticationService from "../services/Authentication_service";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import { RoutesString, PAGES } from './routesString'
 import withLayout from '../layouts/withLayout/withLayout'
-import AnonymousLayout from "../layouts/AnonymousLayout/AnonymousLayout";
+import AnonymousLayout from "../layouts/AnonymousLayout/AnonymousLayout"
+
 export default function Pages() {
     const [isLogined, setIsLogined] = useState(null);
     const history = useHistory();
@@ -24,74 +25,56 @@ export default function Pages() {
 
     return (
         <BrowserRouter>
-            <Switch>
-                <Route
-                    path={RoutesString.WELCOME}
-                    exact={true}
-                    component={withLayout({ isLogined })(AnonymousLayout, () => (
-                        <Suspense fallback={<Loading />}>
-                            Homeasdasdasd
-                        </Suspense>
-                    ))}
-                />
-                <Route path={RoutesString.SIGNIN}
-                       exact={true}
-                       component={()=>
-                            <Suspense fallback={<Loading />}>
-                                <PAGES.Signin />
-                            </Suspense>
-                    } />
-                <Route
-                    path={RoutesString.SIGNUP}
-                    exact={true}
-                    component={()=>
-                        <Suspense fallback={<Loading />}>
-                            <PAGES.Signup />
-                        </Suspense>
-                    } />
-                <PrivateRoute
-                    path={RoutesString.ROLES}
-                    exact={true}
-                    component={withLayout({ isLogined })(AnonymousLayout, () => (
-                        <Suspense fallback={<Loading />}>
-                            <PAGES.Roles/>
-                        </Suspense>
-                    ))}
-                />
-                <PrivateRoute
-                    path={RoutesString.USERS}
-                    exact={true}
-                    component={withLayout({ isLogined })(AnonymousLayout, () => (
-                        <Suspense fallback={<Loading />}>
-                            <PAGES.Users/>
-                        </Suspense>
-                    ))}
-                />
-                <PrivateRoute
-                    path={RoutesString.PERMISSIONS}
-                    exact={true}
-                    component={withLayout({ isLogined })(AnonymousLayout, () => (
-                        <Suspense fallback={<Loading />}>
-                            <PAGES.Permissions/>
-                        </Suspense>
-                    ))}
-                />
-                <PrivateRoute
-                    path={RoutesString.SIGNOUT}
-                    exact={true}
-                    component={signout}
-                />
-                <Route path={RoutesString.ACCESS_DENIED} exact={true}>
-                    <Suspense fallback={<Loading />}>
-                        <PAGES.PageNotFound title="" content="" />
-                    </Suspense>
-                </Route>
-                <Route key={"page-not-found"} path="*">
-                    <Suspense fallback={<Loading />}>
-                        <PAGES.PageNotFound />
-                    </Suspense>
-                </Route>
-            </Switch>
+            <Suspense fallback={<Loading />}>
+                <Switch>
+                    <Route
+                        path={RoutesString.WELCOME}
+                        exact={true}
+                        component={withLayout({ isLogined })(AnonymousLayout, () => (
+                            <>Home page</>
+                        ))}
+                    />
+                    <Route path={RoutesString.SIGNIN}
+                           exact={true}
+                           component={PAGES.Signin} />
+                    <Route
+                        path={RoutesString.SIGNUP}
+                        exact={true}
+                        component={<PAGES.Signup />} />
+                    <PrivateRoute
+                        path={RoutesString.ROLES}
+                        exact={true}
+                        component={withLayout({ isLogined })(AnonymousLayout, () => (
+                                <PAGES.Roles/>
+                        ))}
+                    />
+                    <PrivateRoute
+                        path={RoutesString.USERS}
+                        exact={true}
+                        component={withLayout({ isLogined })(AnonymousLayout, () => (
+                                <PAGES.Users isLogined={isLogined}/>
+                        ))}
+                    />
+                    <PrivateRoute
+                        path={RoutesString.PERMISSIONS}
+                        exact={true}
+                        component={withLayout({ isLogined })(AnonymousLayout, () => (
+                                <PAGES.Permissions/>
+                        ))}
+                    />
+                    <PrivateRoute
+                        path={RoutesString.SIGNOUT}
+                        exact={true}
+                        component={signout}
+                    />
+                    <Route path={RoutesString.ACCESS_DENIED} exact={true}>
+                            <PAGES.PageNotFound title="" content="" />
+                    </Route>
+                    <Route key={"page-not-found"} path="*">
+                            <PAGES.PageNotFound />
+                    </Route>
+                </Switch>
+            </Suspense>
         </BrowserRouter>
     );
 }

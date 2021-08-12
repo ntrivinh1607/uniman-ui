@@ -55,30 +55,48 @@ export default function Menu(props) {
                         HOME
                     </NavLink>
                 </NavItem>
-                <NavItem>
-                    <NavLink href={RoutesString.USERS}>
-                        USER LIST
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink href={RoutesString.ROLES} >
-                        ROLE LIST
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink href={RoutesString.PERMISSIONS} >
-                        PERMISSION LIST
-                    </NavLink>
-                </NavItem>
-            </Nav>
+                {isLogined ?
+                    <>
+                    <NavItem>
+                        <NavLink onClick={() =>
+                            history.push(
+                                RoutesString.USERS
+                            )}>
+                            USER LIST
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink onClick={() =>
+                            history.push(
+                                RoutesString.ROLES
+                            )
+                        } >
+                            ROLE LIST
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink onClick={() =>
+                            history.push(
+                                RoutesString.PERMISSIONS
+                            )
+                        } >
+                            PERMISSION LIST
+                        </NavLink>
+                    </NavItem>
+                    </> : <></>
+                }
 
+            </Nav>
             <Nav className="ml-auto" navbar>
                 {!isLogined ? (
                     <NavItem>
                         <Button
                             className="login-btn"
                             outline
-                            href={RoutesString.SIGNIN}
+                            onClick={() =>
+                            history.push(
+                                RoutesString.SIGNIN
+                            )} >
                         >
                             <FaSignInAlt /> &nbsp; Sign In
                         </Button>
@@ -141,7 +159,10 @@ export default function Menu(props) {
                                 <DropdownItem>
                                     <NavLink
                                         className="btn_dropdown"
-                                        href={RoutesString.SIGNOUT}
+                                        onClick={() =>
+                                            history.push(
+                                                RoutesString.SIGNOUT
+                                            )}
                                     >
                                         <FaSignOutAlt /> Sign Out
                                     </NavLink>

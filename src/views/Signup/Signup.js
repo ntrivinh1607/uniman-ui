@@ -8,7 +8,7 @@ import {
     FormText,
     FormGroup,
     Button,
-    Input,
+    Input, NavLink,
 } from "reactstrap";
 import "./Signup.css";
 import LoadingBar from "../../components/Loading/Loading";
@@ -17,18 +17,19 @@ import {RoutesString} from "../../pages/routesString";
 import * as Yup from 'yup';
 import roleApi from "../../api/roleApi";
 import userApi from "../../api/userApi";
+import {useHistory} from "react-router-dom";
 
 const SignupSchema = Yup.object().shape({
     username: Yup.string()
-        .min(2, 'Username too Short!')
+        .min(4, 'Username too Short!')
         .max(20, 'Username tooo Long!')
         .required('Username required'),
     password: Yup.string()
-        .min(3, 'Password too Short!')
+        .min(4, 'Password too Short!')
         .max(20, 'Password too Long!')
         .required('Password required'),
     retypePassword: Yup.string()
-        .min(3, 'Password too Short!')
+        .min(4, 'Password too Short!')
         .max(20, 'Password too Long!')
         .required('Password required')
 });
@@ -37,6 +38,7 @@ export default function Signup(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [status, setStatus] = useState("");
     const [ roles, setRoles ] = useState([{id: 0, name: "FRESHER"}])
+    const history = useHistory();
 
     const fetchRoles = async () => {
         try{
@@ -166,12 +168,12 @@ export default function Signup(props) {
                                             </a>
                                         </div>
                                         <div className="btn_ text-center">
-                                            <a
+                                            <NavLink
                                                 className="text-warning register_btn"
-                                                href={RoutesString.SIGNIN}
+                                                onClick={()=>history.push(RoutesString.SIGNIN)}
                                             >
                                                 Sign in
-                                            </a>
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </Container>

@@ -7,12 +7,16 @@ export default function Permissions(props) {
     const [ permissions, setPermissions ] = useState([]);
 
     const fetchData = async () => {
-        const data = await permissionApi.getAll();
-        if(data) {
-            setPermissions(data.map(item=> {
-                item.isEditing = false;
-                return item;
-            }));
+        try{
+            const data = await permissionApi.getAll();
+            if(data) {
+                setPermissions(data.map(item=> {
+                    item.isEditing = false;
+                    return item;
+                }));
+            }
+        }catch(err){
+            alert("404 Error: Cannot fetch permissions")
         }
     }
 
@@ -29,8 +33,12 @@ export default function Permissions(props) {
             }
             await fetchData();
         } catch(err){
-            alert(`Save error! ${err}`)
-            return null;
+            if(err.response.status === 409)
+            {
+                alert("409 Error: Duplicate permission's name");
+            } else {
+                alert("500 Error: Cannot save role");
+            }
         }
     }
     const onActionEdit = (rowId)=>{
@@ -51,8 +59,7 @@ export default function Permissions(props) {
                 }))
             }
         } catch(err){
-            alert(`Delete error! ${err}`)
-            return null;
+            alert(`Something wrong: Delete error!`);
         }
     }
     const onActionAdd = ()=>{

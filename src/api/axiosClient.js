@@ -53,7 +53,7 @@ axiosClient.interceptors.response.use(
         if (
             // (error?.response?.data?.message === ROLES_MESSAGE.NO_PERMISSION ||
             //     error?.response?.data?.message === "AUTHORIZATION_ERROR") &&
-            error.response.status === 403
+            error?.response?.status === 403
         ) {
             return (window.location.href = RoutesString.ACCESS_DENIED);
         } else if (
@@ -64,7 +64,7 @@ axiosClient.interceptors.response.use(
                 const { refreshToken = "" } = JSON.parse(
                     localStorage.getItem("token")
                 );
-                // not have refreshtoken yet, so cannot use code below...
+                    // not have refreshtoken yet, so cannot use code below...
                 // const response = await handleRefreshToken(refreshToken);
                 // localStorage.setItem(
                 //     "token",

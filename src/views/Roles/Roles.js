@@ -7,12 +7,16 @@ export default function Roles(props) {
     const [ roles, setRoles ] = useState([]);
 
     const fetchData = async () => {
-        const data = await roleApi.getAll();
-        if(data) {
-            setRoles(data.map(item=> {
-                item.isEditing = false;
-                return item;
-            }));
+        try{
+            const data = await roleApi.getAll();
+            if(data) {
+                setRoles(data.map(item=> {
+                    item.isEditing = false;
+                    return item;
+                }));
+            }
+        } catch {
+            alert("404 Error: Cannot fetch roles")
         }
     }
 
@@ -37,8 +41,12 @@ export default function Roles(props) {
             }
             await fetchData();
         } catch(err){
-            console.log(err)
-            return null;
+            if(err.response.status === 409)
+            {
+                alert("409 Error: Duplicate role's name");
+            } else {
+                alert("500 Error: Cannot save role");
+            }
         }
     }
     const onActionEdit = (rowId)=>{
@@ -55,8 +63,7 @@ export default function Roles(props) {
             }
             await fetchData();
         } catch(err){
-            console.log(err)
-            return null;
+            alert("Something wrong: cannot delete this item");
         }
     }
     const onActionAdd = ()=>{
@@ -69,6 +76,12 @@ export default function Roles(props) {
         fetchData();
     }
     return (
-        <Table roles={roles} onActionRefresh={onActionRefresh} onActionAdd={onActionAdd} onActionDelete={onActionDelete} onActionEdit={onActionEdit} onActionSave={onActionSave}/>
+        <Table
+            roles={roles}
+            onActionRefresh={onActionRefresh}
+            onActionAdd={onActionAdd}
+            onActionDelete={onActionDelete}
+            onActionEdit={onActionEdit}
+            onActionSave={onActionSave}/>
     );
 }

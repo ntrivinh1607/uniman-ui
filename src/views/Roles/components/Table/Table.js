@@ -25,7 +25,6 @@ const TableComponent = (props) => {
     const [ idDelete, setIdDelete ] = useState(null);
 
     const handleOnEditClick = (rowId, row) => {
-        console.log(row)
         onActionEdit(rowId);
     }
 
@@ -35,7 +34,7 @@ const TableComponent = (props) => {
             .then(() => {
                 onActionSave(row);
             }).catch(()=>{
-                alert("Username is must between 2 and 5 characters");
+                alert("Role's name is must between 4 and 20 characters");
         });
     }
 

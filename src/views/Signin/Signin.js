@@ -8,7 +8,7 @@ import {
     FormText,
     FormGroup,
     Button,
-    Input,
+    Input, NavLink,
 } from "reactstrap";
 import "./Signin.css";
 import AuthenticationService from "../../services/Authentication_service";
@@ -20,11 +20,11 @@ import { useHistory } from "react-router";
 
 const SigninSchema = Yup.object().shape({
     username: Yup.string()
-        .min(2, 'Username too Short!')
+        .min(4, 'Username too Short!')
         .max(20, 'Username tooo Long!')
         .required('Username required'),
     password: Yup.string()
-        .min(3, 'Password too Short!')
+        .min(4, 'Password too Short!')
         .max(20, 'Password too Long!')
         .required('Password required')
 });
@@ -43,10 +43,6 @@ export default function Signin(props) {
         password: ""
     }
     const handleValidSubmit = async ( user ) => {
-        // if(!validatePassword(String(user?.password))){
-        //     setStatus("Password must contain 8 characters, 1 number and 1 UPPERCASE");
-        //     return;
-        // }
         setIsLoading(true);
         try {
             const response = await AuthenticationService.signin(user);
@@ -140,12 +136,12 @@ export default function Signin(props) {
                                             </a>
                                         </div>
                                         <div className="btn_ text-center">
-                                            <a
+                                            <NavLink
                                                 className="text-warning register_btn"
-                                                href={RoutesString.SIGNUP}
+                                                onClick={()=>history.push(RoutesString.SIGNUP)}
                                             >
                                                 Sign up
-                                            </a>
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </Container>

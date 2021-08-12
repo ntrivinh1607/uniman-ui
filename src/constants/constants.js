@@ -19,10 +19,10 @@ export const POSITION = {
 export const DEFAULT_PASSWORD = "newpassword";
 
 export const ROLES = {
-    STUDENT: 1,
-    TEACHER: 2,
-    MANAGER: 3,
-    ADMIN: 4,
+    FRESHER: 1,
+    JUNIOR: 2,
+    SENIOR: 3,
+    MANAGER: 4,
 };
 
 export const ROLES_MESSAGE = {

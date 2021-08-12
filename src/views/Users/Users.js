@@ -8,13 +8,13 @@ import roleApi from "../../api/roleApi";
 export default function Users(props) {
     const [ users, setUsers ] = useState([]);
     const [ roles, setRoles ] = useState([{id: 0, name: "FRESHER"}])
-
+    const curUser = props.isLogined;
     const fetchRoles = async () => {
         try{
             const data = await roleApi.getAll();
             setRoles(data?.map(item=> ({id: item.id, name: item.name})));
         }catch(e){
-            console.log(e);
+            alert('Cannot fetch roles!');
         }
     }
 
@@ -22,13 +22,15 @@ export default function Users(props) {
         try{
             const data = await userApi.getAll();
             if(data) {
-                setUsers(data.map(item=> {
+                setUsers(data
+                    .filter(item=>item.id !== curUser.id)
+                    .map(item=> {
                     item.isEditing = false;
                     return item;
                 }));
             }
-        }catch(e){
-            console.log(e);
+        } catch(err){
+            alert("404 Error: Cannot fetch users");
         }
     }
     const fetchData = async () => {
@@ -49,8 +51,12 @@ export default function Users(props) {
             }
             await fetchUsers();
         } catch(err){
-            alert(`Save error! ${err}`)
-            return null;
+            if(err.response.status === 409)
+            {
+                alert("409 Error: Duplicate username");
+            } else {
+                alert("500 Error: Cannot save user");
+            }
         }
     }
     const onActionEdit = (rowId)=>{
@@ -64,11 +70,12 @@ export default function Users(props) {
         try{
             if(rowId){
                 await userApi.deleteById(rowId);
+            } else {
+
             }
             await fetchUsers();
         } catch(err){
-            alert(`Delete Error! ${err}`)
-            return null;
+            alert('Cannot delete User!');
         }
     }
     const onActionAdd = ()=>{

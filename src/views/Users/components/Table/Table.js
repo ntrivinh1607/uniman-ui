@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import ConfirmModal from "../../../../components/ConfirmModal/ConfirmModal";
 
 const UsernameValidation = Yup.string()
-        .min(2, 'Username too Short!')
+        .min(4, 'Username too Short!')
         .max(20, 'Username too Long!');
 
 const TableComponent = (props) => {
@@ -37,7 +37,7 @@ const TableComponent = (props) => {
             .then(() => {
                 onActionSave(row);
             }).catch(()=>{
-                alert("Username is must between 2 and 5 characters");
+                alert("Username is must between 4 and 20 characters");
         });
     }
 
