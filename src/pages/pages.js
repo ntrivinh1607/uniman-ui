@@ -17,9 +17,7 @@ export default function Pages() {
 
     const signout = () => {
         AuthenticationService.signout();
-
         window.location.href=RoutesString.SIGNIN;
-
         return null;
     };
 
@@ -40,7 +38,7 @@ export default function Pages() {
                     <Route
                         path={RoutesString.SIGNUP}
                         exact={true}
-                        component={<PAGES.Signup />} />
+                        component={PAGES.Signup} />
                     <PrivateRoute
                         path={RoutesString.ROLES}
                         exact={true}
@@ -62,13 +60,13 @@ export default function Pages() {
                                 <PAGES.Permissions/>
                         ))}
                     />
-                    <PrivateRoute
+                    <Route
                         path={RoutesString.SIGNOUT}
                         exact={true}
                         component={signout}
                     />
                     <Route path={RoutesString.ACCESS_DENIED} exact={true}>
-                            <PAGES.PageNotFound title="" content="" />
+                            <PAGES.PageNotFound title="ACCESS DENIED" content="The page you are looking for is only available for authorized people, please sign in or re-sign in for authorization." />
                     </Route>
                     <Route key={"page-not-found"} path="*">
                             <PAGES.PageNotFound />

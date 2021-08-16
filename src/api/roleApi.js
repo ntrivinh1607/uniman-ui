@@ -4,6 +4,10 @@ const roleApi = {
         const url = `roles`;
         return axiosClient.get(url);
     },
+    getList: function () {
+        const url = `roles/anonymous-list`;
+        return axiosClient.get(url);
+    },
     getById: function (id) {
         const url = `roles/${id}`;
         return axiosClient.get(url);

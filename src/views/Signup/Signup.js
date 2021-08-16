@@ -37,15 +37,15 @@ const SignupSchema = Yup.object().shape({
 export default function Signup(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [status, setStatus] = useState("");
-    const [ roles, setRoles ] = useState([{id: 0, name: "FRESHER"}])
+    const [ roles, setRoles ] = useState([])
     const history = useHistory();
 
     const fetchRoles = async () => {
         try{
-            const data = await roleApi.getAll();
-            setRoles(data?.map(item=> ({id: item.id, name: item.name})));
+            const data = await roleApi.getList();
+            if(data) setRoles(data);
         }catch(e){
-            alert(e);
+            alert("Can't not fetch role list");
         }
     }
 
@@ -57,7 +57,7 @@ export default function Signup(props) {
         username: "",
         password: "",
         retypePassword: "",
-        role: "FRESHER"
+        role: ""
     }
     const handleValidSubmit = async ( user ) => {
         setStatus("");
@@ -146,7 +146,7 @@ export default function Signup(props) {
                                                         handleChange(e);
                                                     }}
                                                 >
-                                                    {roles.map((role, index)=><option value={role.name}>{role.name}</option>)}
+                                                    {roles.map((role, index)=><option key={index}>{role}</option>)}
                                                 </Field>
                                             </FormGroup>
                                             <FormText color="danger">{status} {errors.username!==undefined && `. ${errors.username}`} {errors.password!==undefined && `. ${errors.password}`}</FormText>
