@@ -42,7 +42,7 @@ export default function Signup(props) {
 
     const fetchRoles = async () => {
         try{
-            const data = await roleApi.getList();
+            const data = await roleApi.getListName();
             if(data) setRoles(data);
         }catch(e){
             alert("Can't not fetch role list");
