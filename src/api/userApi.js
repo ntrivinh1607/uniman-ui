@@ -18,11 +18,11 @@ const userApi = {
     },
     post: function (body) {
         const url = `users`;
-        return axiosClient.post(url, JSON.stringify(body));
+        return axiosClient.post(url, body);
     },
     putById: function (id, body) {
         const url = `users/${id}`;
-        return axiosClient.put(url, JSON.stringify(body));
+        return axiosClient.put(url, body);
 
     },
     deleteById: function (id) {

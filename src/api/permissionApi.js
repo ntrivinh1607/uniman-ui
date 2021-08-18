@@ -10,11 +10,11 @@ const permissionApi = {
     },
     post: function (body) {
         const url = `permissions`;
-        return axiosClient.post(url, JSON.stringify(body));
+        return axiosClient.post(url, body);
     },
     putById: function (id, body) {
         const url = `permissions/${id}`;
-        return axiosClient.put(url, JSON.stringify(body));
+        return axiosClient.put(url, body);
 
     },
     deleteById: function (id) {

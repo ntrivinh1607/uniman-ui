@@ -30,15 +30,15 @@ export default function Menu(props) {
     const history = useHistory();
     const { isLogined } = props;
 
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [dropdownOpen1, setDropdownOpen1] = useState(false);
+    const [profileDropdown, setProfileDropdown] = useState(false);
+    const [languageDropdown, setLanguageDropdown] = useState(false);
 
-    const toggle = function () {
-        setDropdownOpen((prevState) => !prevState);
+    const profileDropdownToggle = function () {
+        setProfileDropdown((prevState) => !prevState);
     };
 
-    const toggle1 = function () {
-        setDropdownOpen1((prevState) => !prevState);
+    const languageDropdownToggle = function () {
+        setLanguageDropdown((prevState) => !prevState);
     };
     const srcImgAvt = isLogined?.avatar
         ? `${isLogined?.avatar}`
@@ -104,8 +104,8 @@ export default function Menu(props) {
                 ) : (
                     <NavItem>
                         <Dropdown
-                            isOpen={dropdownOpen}
-                            toggle={toggle}
+                            isOpen={profileDropdown}
+                            toggle={profileDropdownToggle}
                             className="profile_dropdown"
                         >
                             <DropdownToggle
@@ -173,7 +173,7 @@ export default function Menu(props) {
                 )}
                 &emsp;
                 <NavItem>
-                    <Dropdown isOpen={dropdownOpen1} toggle={toggle1}>
+                    <Dropdown isOpen={languageDropdown} toggle={languageDropdownToggle}>
                         <DropdownToggle
                             caret
                             outline

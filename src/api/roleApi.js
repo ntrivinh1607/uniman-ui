@@ -14,11 +14,11 @@ const roleApi = {
     },
     post: function (body) {
         const url = `roles`;
-        return axiosClient.post(url, JSON.stringify(body));
+        return axiosClient.post(url, body);
     },
     putById: function (id, body) {
         const url = `roles/${id}`;
-        return axiosClient.put(url, JSON.stringify(body));
+        return axiosClient.put(url, body);
 
     },
     deleteById: function (id) {
