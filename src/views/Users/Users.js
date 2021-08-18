@@ -46,7 +46,7 @@ export default function Users(props) {
                 const data = await userApi.putById(row.id, {username: row.username, role: row.role});
             } else{
                 row.password = DEFAULT_PASSWORD;
-                await userApi.signup(row);
+                await userApi.post(row);
             }
             await fetchUsers();
         } catch(err){
