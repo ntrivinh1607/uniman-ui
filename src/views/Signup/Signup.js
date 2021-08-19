@@ -64,6 +64,7 @@ export default function Signup(props) {
         setIsLoading(true);
         try {
             if(user.password === user.retypePassword) {
+                console.log(user);
                 await userApi.signup({username: user.username, password: user.password, role: user.role});
                 alert("Success! Please login");
             } else{
@@ -71,7 +72,7 @@ export default function Signup(props) {
             }
             setIsLoading(false);
         } catch (err) {
-            alert(err);
+            alert("Please enter correct information");
             setIsLoading(false);
         }
     };
@@ -145,7 +146,9 @@ export default function Signup(props) {
                                                     onChange={(e) =>{
                                                         handleChange(e);
                                                     }}
+                                                    placeholder="Role"
                                                 >
+                                                    <option key={0}>PLEASE CHOOSE A ROLE</option>
                                                     {roles.map((role, index)=><option key={index}>{role}</option>)}
                                                 </Field>
                                             </FormGroup>
