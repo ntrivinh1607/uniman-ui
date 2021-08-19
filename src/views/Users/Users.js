@@ -7,7 +7,7 @@ import roleApi from "../../api/roleApi";
 
 export default function Users(props) {
     const [ users, setUsers ] = useState([]);
-    const [ roles, setRoles ] = useState([{id: 0, name: "FRESHER"}])
+    const [ roles, setRoles ] = useState([])
     const curUser = props.isLogined;
     const fetchRoles = async () => {
         try{
@@ -54,7 +54,7 @@ export default function Users(props) {
             {
                 alert("409 Error: Duplicate username");
             } else {
-                alert("500 Error: Cannot save user");
+                alert("400 Error: Cannot save user, please enter correctly");
             }
         }
     }
@@ -85,7 +85,7 @@ export default function Users(props) {
     }
     const onActionAdd = ()=>{
         const newUsers = [...users];
-        newUsers.unshift({id: 0, username: "", role: "FRESHER", updated_at: Date.now(), created_at: Date.now(), isEditing: true});
+        newUsers.unshift({id: 0, username: "", role: "", updated_at: Date.now(), created_at: Date.now(), isEditing: true});
         setUsers(newUsers);
     }
 

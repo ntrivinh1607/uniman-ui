@@ -141,7 +141,7 @@ const TableComponent = (props) => {
                                                         handleChange(e);
                                                     }}
                                                     disabled={!values.isEditing}
-                                                >
+                                                > <option value="">Please choose a role</option>
                                                     {roles.map((role, index)=><option value={role.name}>{role.name}</option>)}
                                                 </Field>
                                             </td>
@@ -170,8 +170,8 @@ const TableComponent = (props) => {
     );
 }
 TableComponent.defaultProps = {
-    users: [{isEditing: true, id: 1, role: "JUNIOR", username: "vinh", updated_at: "", created_at: ""}],
-    roles: [{name: "FRESHER"}],
+    users: [],
+    roles: [],
     handleCSVExport: () => {},
 
 }

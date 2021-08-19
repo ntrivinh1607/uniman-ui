@@ -148,7 +148,7 @@ export default function Signup(props) {
                                                     }}
                                                     placeholder="Role"
                                                 >
-                                                    <option key={0}>PLEASE CHOOSE A ROLE</option>
+                                                    <option key={0} value="">Please choose a role</option>
                                                     {roles.map((role, index)=><option key={index}>{role}</option>)}
                                                 </Field>
                                             </FormGroup>

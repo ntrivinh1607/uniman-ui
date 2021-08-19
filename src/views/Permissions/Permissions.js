@@ -37,7 +37,7 @@ export default function Permissions(props) {
             {
                 alert("409 Error: Duplicate permission's name");
             } else {
-                alert("400 Error: Cannot save permission");
+                alert("400 Error: Cannot save permission, please enter correctly");
             }
         }
     }

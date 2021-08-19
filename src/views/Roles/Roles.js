@@ -45,7 +45,7 @@ export default function Roles(props) {
             {
                 alert("409 Error: Duplicate role's name");
             } else {
-                alert("400 Error: Cannot save role");
+                alert("400 Error: Cannot save role, please enter correctly");
             }
         }
     }
