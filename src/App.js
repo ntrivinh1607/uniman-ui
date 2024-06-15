@@ -1,3 +1,4 @@
+import React from "react";
 import './App.css';
 import Routes from "./pages/pages";
 import "bootstrap/dist/css/bootstrap.min.css";
